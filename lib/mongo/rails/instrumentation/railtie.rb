@@ -27,7 +27,8 @@ module Mongo::Rails::Instrumentation
             end
           CODE
 
-          alias_method_chain m, :instrumentation
+          alias_method "#{m}_without_instrumentation".to_sym, m
+          alias_method m, "#{m}_with_instrumentation".to_sym
         end
       end
     end
